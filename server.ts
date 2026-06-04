@@ -1,4 +1,5 @@
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
+import { ajouterPost, listerPosts, type Post } from "./posts.js";
 
 
 
@@ -17,7 +18,7 @@ const server = createServer((req: IncomingMessage, res: ServerResponse) => {
         res.writeHead(200, {"Content-Type": "application/json"});
         // JSON.stringify transforme notre tableau JS 'posts' en texte (du JSON),
         // puis res.end ENVOIE ce texte et TERMINE la reponse
-        res.end(JSON.stringify(posts));
+        res.end(JSON.stringify(listerPosts));
         // return : on s'arrete la. Sans lui le code continuerai plus bas et 
         // essaierait d'envoyer une deuxieme reponse ce qui ferait planter le serveur
         return;
@@ -33,12 +34,7 @@ const server = createServer((req: IncomingMessage, res: ServerResponse) => {
         req.on("end", () => {
             try {
                 const donnees = JSON.parse(corps);
-                const nouveauPost: Post = {
-                    id: posts.length + 1,
-                    auteur: donnees.auteur,
-                    domaine: donnees.domaine,
-                    contenu: donnees.contenu
-                };
+                const nouveauPost: Post = ajouterPost(donnees);
                 posts.push(nouveauPost);
                 res.writeHead(201, {"Content-Type": "application/json"});
                 res.end(JSON.stringify(nouveauPost));
