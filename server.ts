@@ -35,7 +35,6 @@ const server = createServer((req: IncomingMessage, res: ServerResponse) => {
             try {
                 const donnees = JSON.parse(corps);
                 const nouveauPost: Post = ajouterPost(donnees);
-                posts.push(nouveauPost);
                 res.writeHead(201, {"Content-Type": "application/json"});
                 res.end(JSON.stringify(nouveauPost));
             } catch {
