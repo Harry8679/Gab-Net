@@ -4,6 +4,7 @@
     "module": "nodenext",
     "target": "es2022",
     "moduleResolution": "nodenext",
+    "allowImportingTsExtensions": true,
     "types": ["node"],
     "sourceMap": true,
     "declaration": true,
