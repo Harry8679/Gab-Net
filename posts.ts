@@ -13,3 +13,14 @@ const posts: Post[] = [
 export function listerPosts(): Post[] {
     return posts;
 }
+
+export function ajouterPost(donnees: {auteur: string; domaine: string; contenu: string;}) {
+    const nouveauPost: Post = {
+        id: posts.length,
+        auteur: donnees.auteur,
+        domaine: donnees.domaine,
+        contenu: donnees.contenu
+    };
+    posts.push(nouveauPost);
+    return nouveauPost;
+}
