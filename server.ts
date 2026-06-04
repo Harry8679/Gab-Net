@@ -1,16 +1,6 @@
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
 
-interface Post {
-    id: number;
-    auteur: string;
-    domaine: string;
-    contenu: string;
-}
 
-const posts: Post[] = [
-    { id: 1, auteur: "Awa", domaine: "devops", contenu: "Retour d'X sur Kubernates" },
-    { id: 2, auteur: "Eric", domaine: "data", contenu: "Mon premier Pipeline Spark" }
-];
 
 // createServer cree le server. La fonction qu'on lui passe entre parentheses
 // est rappelee AUTOMATIQUEMENT chaque fois qu'un visiteur fait la requete
